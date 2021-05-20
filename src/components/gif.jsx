@@ -8,9 +8,16 @@ class Gif extends Component {
     }
   };
 
+//   This saves us from rerendering unnecessary components as they have not changed. Hence, we only update if the new props are different to the current ones. 
+// Returns true then we re-render. Returns false, we don't. 
+// This is comparing the Virtual to Actual DOM. 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.id !== this.props.id;
+  }
+
   render() {
     const { id } = this.props;
-    // THis is a pattern you need to bear in mind when using null as an initial value otherwise you will get a 404! 
+    // THis is a pattern you need to bear in mind when using null as an initial value otherwise you will get a 404!
     if (!id) {
       return null;
     }
